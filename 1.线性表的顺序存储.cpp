@@ -199,10 +199,3 @@ void Adjust(SqList<int>& la) {
 
 }
 
-
-int main() {
-
-	SqList<int> s;
-
-	return 0;
-}

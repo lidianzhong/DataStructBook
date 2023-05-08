@@ -127,7 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="1.线性表的顺序存储.cpp" />
+    <ClCompile Include="1.线性表的顺序存储.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="2.4链表修改版.cpp" />
+    <ClCompile Include="2.1线性表的链式存储-单链表.cpp" />
+    <ClCompile Include="2.2线性表的链式存储-循环链表.cpp" />
+    <ClCompile Include="2.3线性表的链式存储-双向链表.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

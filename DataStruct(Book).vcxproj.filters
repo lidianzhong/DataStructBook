@@ -18,5 +18,20 @@
     <ClCompile Include="1.线性表的顺序存储.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="2.1线性表的链式存储-单链表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="2.2线性表的链式存储-循环链表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="2.3线性表的链式存储-双向链表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="2.4链表修改版.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
