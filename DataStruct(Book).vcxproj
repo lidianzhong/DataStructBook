@@ -134,6 +134,10 @@
     <ClCompile Include="2.1线性表的链式存储-单链表.cpp" />
     <ClCompile Include="2.2线性表的链式存储-循环链表.cpp" />
     <ClCompile Include="2.3线性表的链式存储-双向链表.cpp" />
+    <ClCompile Include="3.1顺序栈.cpp" />
+    <ClCompile Include="3.2链式栈.cpp" />
+    <ClCompile Include="3.3链队列.cpp" />
+    <ClCompile Include="3.4循环队列.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
