@@ -45,5 +45,8 @@
     <ClCompile Include="3.4循环队列.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="4.1KMP字符串模式匹配算法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
