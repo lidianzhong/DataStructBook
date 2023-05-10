@@ -22,7 +22,7 @@
 
 `第三章` [3.4 循环队列](https://github.com/lidianzhong/DataStructBook/blob/master/3.4%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97.cpp)
 
-
+`第四章` [4.1 4.1KMP字符串模式匹配算法](https://github.com/lidianzhong/DataStructBook/blob/master/4.1KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.cpp)
 
 ---
 

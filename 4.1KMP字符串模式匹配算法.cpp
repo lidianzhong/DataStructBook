@@ -91,9 +91,3 @@ int KMP_match(char S[], char P[]) {
 
 }
 
-int main() {
-	char* s = (char*)"cabadba";
-	char* t = (char*)"dba";
-	cout << KMP_match(s, t);
-	return 0;
-}
