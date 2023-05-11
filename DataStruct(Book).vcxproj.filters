@@ -60,5 +60,8 @@
     <ClCompile Include="5.4特殊矩阵-对角矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="5.5 稀疏矩阵.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
