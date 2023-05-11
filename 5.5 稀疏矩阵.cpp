@@ -105,9 +105,9 @@ bool TriSparseMatrix<ElemType>::SetElem(int r, int c, const ElemType& v)
 		else { // 如果v不为0，就赋值v给value
 			triElems[j].value = v;
 		}
-		
+
 		return true;
-		
+
 	}
 	else if (v != 0 && num < maxSize) { // 没找到，但是符合条件，那就插入到稀疏数组中
 		for (int i = num - 1; i > j; i--) triElems[i + 1] = triElems[i];
@@ -120,6 +120,7 @@ bool TriSparseMatrix<ElemType>::SetElem(int r, int c, const ElemType& v)
 
 	else return false; // 走到这是num < maxSize,内存满了
 
+
 }
 
 template<class ElemType>
@@ -128,14 +129,14 @@ bool TriSparseMatrix<ElemType>::GetElem(int r, int c, ElemType& v)
 	if (r < 1 || r > rows || c <1 || c > cols) return false; // 下标范围错
 
 	int j;
-
+	
 	for (j = num - 1; j >= 0 && (r < triElems[j].row || r == triElems[j].row && c < triElems[j].col); j--); // 二分法查找
 
 	if (j >= 0 && triElems[j].row == r && triElems[j].col == c) { // 查找成功
 
 		v = c;
 		return true;
-	}
+}
 	else {
 		return false;
 	}
