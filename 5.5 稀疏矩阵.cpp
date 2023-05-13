@@ -1,4 +1,6 @@
+#include <iostream>
 #define DEFAULT_SIZE 100
+using namespace std;
 
 // 三元组类模板
 template<class ElemType>
@@ -46,6 +48,7 @@ public:
 	int GetNum() const;
 	bool SetElem(int r, int c, const ElemType& v);
 	bool GetElem(int r, int c, ElemType& v);
+	void Traverse(void (*visit)(const Triple<ElemType>&)) const;
 	TriSparseMatrix(const TriSparseMatrix<ElemType>& copy); // 复制构造函数模板
 	TriSparseMatrix<ElemType>& operator=(const TriSparseMatrix<ElemType>& copy); // 重载赋值运算符
 
@@ -134,7 +137,7 @@ bool TriSparseMatrix<ElemType>::GetElem(int r, int c, ElemType& v)
 
 	if (j >= 0 && triElems[j].row == r && triElems[j].col == c) { // 查找成功
 
-		v = c;
+		v = triElems[j].value;
 		return true;
 }
 	else {
@@ -142,6 +145,13 @@ bool TriSparseMatrix<ElemType>::GetElem(int r, int c, ElemType& v)
 	}
 
 	
+}
+
+template<class ElemType>
+void TriSparseMatrix<ElemType>::Traverse(void(*visit)(const Triple<ElemType>&)) const
+{
+	for (int pos = 0; pos < num; pos++)
+		(*visit)(triElems[pos]);
 }
 
 template<class ElemType>
@@ -175,4 +185,10 @@ TriSparseMatrix<ElemType>& TriSparseMatrix<ElemType>::operator=(const TriSparseM
 		triElems[pos] = copy.triElems[pos];
 	}
 
+}
+
+// 打印Tripe三元组
+template<class ElemType>
+void Print_Triple(const Triple<ElemType>& triElem) {
+	cout << "row=" << triElem.row << "  col=" << triElem.col << "  value=" << triElem.value << endl;
 }
