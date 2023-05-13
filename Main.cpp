@@ -6,7 +6,7 @@ using namespace std;
 
 void test01()
 {
-	TriSparseMatrix<int> Matrix;
+	TriSparseMatrix<int> Matrix(5,6);
 	Matrix.SetElem(1, 3, 2);
 	Matrix.SetElem(2, 6, 8);
 	Matrix.SetElem(3, 1, 1);
@@ -41,8 +41,8 @@ void test02()
 
 int main()
 {
-	//test01();
-	test02();
+	// test01();
+	// test02();
 
 
 	return 0;

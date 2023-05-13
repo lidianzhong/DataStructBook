@@ -64,4 +64,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="矩阵转置算法(简单+快速).png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

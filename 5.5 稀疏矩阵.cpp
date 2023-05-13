@@ -52,6 +52,12 @@ public:
 	TriSparseMatrix(const TriSparseMatrix<ElemType>& copy); // 复制构造函数模板
 	TriSparseMatrix<ElemType>& operator=(const TriSparseMatrix<ElemType>& copy); // 重载赋值运算符
 
+public:
+	// 将稀疏矩阵sourse转置成稀疏矩阵dest的简单算法
+	void SimpleTranspose(const TriSparseMatrix<ElemType>& sourse, TriSparseMatrix<ElemType>& dest);
+
+	// 将稀疏矩阵source转置成稀疏矩阵dest的快速算法
+	void FastTranspose(const TriSparseMatrix<ElemType>& sourse, TriSparseMatrix<ElemType>& dest);
 };
 
 template<class ElemType>
@@ -186,6 +192,88 @@ TriSparseMatrix<ElemType>& TriSparseMatrix<ElemType>::operator=(const TriSparseM
 	}
 
 }
+
+template<class ElemType>
+void TriSparseMatrix<ElemType>::SimpleTranspose(const TriSparseMatrix<ElemType>& sourse, TriSparseMatrix<ElemType>& dest)
+{
+	dest.rows = sourse.cols;
+	dest.cols = sourse.rows;
+	dest.num = sourse.num;
+	dest.maxSize = sourse.maxSize;
+	delete[] dest.triElems;
+	dest.triElems = new Triple<ElemType>[dest.maxSize];
+
+
+	if (dest.num > 0)
+	{
+		int destPos = 0;
+		for (int col = 1; col <= sourse.cols; col++) { // col:1 ~ cols
+
+			for (int soursePos = 1; soursePos < sourse.num; soursePos++) { // sourse 的 col
+
+				if (sourse.triElems[soursePos].col == col) { // find col
+
+					dest.triElems[destPos].row = sourse.triElems[soursePos].col;
+					dest.triElems[destPos].col = sourse.triElems[soursePos].row;
+					dest.triElems[destPos].value = sourse.triElems[soursePos].value;
+
+					destPos++;
+
+				}
+
+			}
+
+		}
+	}
+
+}
+
+template<class ElemType>
+void TriSparseMatrix<ElemType>::FastTranspose(const TriSparseMatrix<ElemType>& sourse, TriSparseMatrix<ElemType>& dest)
+{
+
+	dest.rows = sourse.cols;
+	dest.cols = sourse.rows;
+	dest.num = sourse.num;
+	dest.maxSize = sourse.maxSize;
+	delete[] dest.triElems;
+	dest.triElems = new Triple<ElemType>[dest.maxSize];
+
+	int* cNum = new int(sourse.cols);
+	int* cPos = new int(sourse.cols);
+
+	if (dest.num > 0)
+	{
+		for (int col = 1; col <= sourse.cols; col++) cNum[col] = 0;     // 初始化cNum
+
+		for (int soursePos = 1; soursePos <= sourse.num; soursePos++) { // 得到cNum数组
+			cNum[sourse.triElems[soursePos].col]++; 
+		}
+
+		cPos[1] = 0;
+		for (int col = 2; col <= sourse.cols; col++) {                  // 得到cPos数组
+			cPos[col] = cPos[col - 1] + cNum[col - 1];
+		}
+
+
+		for (int soursePos = 1; soursePos <= sourse.num; soursePos++) {
+			int icol = sourse.triElems[soursePos].col;
+			dest.triElems[cPos[icol]].col = sourse.triElems[soursePos].row;
+			dest.triElems[cPos[icol]].row = sourse.triElems[soursePos].col;
+			dest.triElems[cPos[icol]].value = sourse.triElems[soursePos].value;
+
+			cPos[icol]++;
+
+		}
+
+	}
+
+	delete[] cNum;
+	delete[] cPos;
+
+}
+
+
 
 // 打印Tripe三元组
 template<class ElemType>
