@@ -1,5 +1,6 @@
 #include <iostream>
 #include "5.5 稀疏矩阵.cpp"
+#include "5.6 引用数法广义表.cpp"
 
 using namespace std;
 
@@ -37,13 +38,21 @@ void test02()
 	Matrix.Traverse(Print_Triple);
 }
 
+void test03()
+{
+	RefGenList<char> list;
+	RefGenList<char> list1;
+	list.Input();
+	list1 = list;
+	list1.Show();
+}
 
 
 int main()
 {
 	// test01();
 	// test02();
-
+	test03();
 
 	return 0;
 }

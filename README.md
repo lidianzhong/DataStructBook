@@ -33,7 +33,7 @@
 
 `第五章` [5.4 特殊矩阵-对角矩阵](https://github.com/lidianzhong/DataStructBook/blob/master/5.4%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5-%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5.cpp)
 
-`第五章` [5.5 稀疏矩阵](https://github.com/lidianzhong/DataStructBook/blob/master/5.5%20%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5.cpp)
+`第五章` [5.5 稀疏矩阵 + 矩阵转置(简单/快速)](https://github.com/lidianzhong/DataStructBook/blob/master/5.5%20%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5.cpp)
 
 
 
