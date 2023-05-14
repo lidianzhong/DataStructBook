@@ -149,6 +149,9 @@
   <ItemGroup>
     <Image Include="矩阵转置算法(简单+快速).png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="5.6 引用数法广义表.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
