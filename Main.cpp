@@ -1,8 +1,15 @@
 #include <iostream>
 #include "5.5 稀疏矩阵.cpp"
 #include "5.6 引用数法广义表.cpp"
+#include "6.1 顺序存储二叉树.cpp"
 
 using namespace std;
+
+template<class ElemType>
+void Print(ElemType data)
+{
+	cout << data << ' ';
+}
 
 
 void test01()
@@ -47,12 +54,32 @@ void test03()
 	list1.Show();
 }
 
+void test04()
+{
+	SqBinaryTree<char> tree('A');
+	tree.InsertLeftChild(1,'B');
+	tree.InsertLeftChild(2, 'D');
+	tree.InsertRightChild(4, 'F');
+	tree.InsertRightChild(1, 'C');
+	tree.InsertRightChild(3, 'E');
+
+
+	tree.PreOrder(Print);
+	cout << endl;
+	tree.InOrder(Print);
+	cout << endl;
+	tree.PostOrder(Print);
+	cout << endl;
+	tree.LevelOrder(Print);
+}
+
 
 int main()
 {
 	// test01();
 	// test02();
-	test03();
+	// test03();
+	test04();
 
 	return 0;
 }

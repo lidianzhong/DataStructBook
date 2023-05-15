@@ -144,6 +144,7 @@
     <ClCompile Include="5.3特殊矩阵-三角矩阵.cpp" />
     <ClCompile Include="5.4特殊矩阵-对角矩阵.cpp" />
     <ClCompile Include="5.5 稀疏矩阵.cpp" />
+    <ClCompile Include="6.1 顺序存储二叉树.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
