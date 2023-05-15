@@ -66,6 +66,9 @@
     <ClCompile Include="6.1 顺序存储二叉树.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="6.2 二叉链表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="矩阵转置算法(简单+快速).png">
