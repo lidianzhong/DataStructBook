@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <queue>
 using namespace std;
 
 // 二叉树结点类模板
@@ -126,13 +127,21 @@ void BinaryTree<ElemType>::PostOrderHelp(const BinTreeNode<ElemType>* r, void(*v
 template<class ElemType>
 int BinaryTree<ElemType>::HeightHelp(const BinTreeNode<ElemType>* r) const
 {
-	return 0;
+	if (r == NULL) return 0;
+
+	int leftdepth = HeightHelp(r->leftChild);
+	int rightdepth = HeightHelp(r->rightChild);
+
+	return leftdepth > rightdepth ? leftdepth + 1 : rightdepth + 1;
 }
 
 template<class ElemType>
 int BinaryTree<ElemType>::NodeCountHelp(const BinTreeNode<ElemType>* r) const
 {
-	return 0;
+	if (r == NULL) return 0;
+
+	return NodeCountHelp(r->leftChild) + NodeCountHelp(r->rightChild) + 1;
+
 }
 
 template<class ElemType>
@@ -308,6 +317,23 @@ void BinaryTree<ElemType>::NonRecurPostOrder(const BinaryTree<ElemType>& bt, voi
 template<class ElemType>
 void BinaryTree<ElemType>::LevelOrder(void(*visit)(const ElemType&)) const
 {
+	if (root == NULL) return;
+
+	queue<BinTreeNode<ElemType>*> q;
+	q.push(root);
+
+	while (!q.empty())
+	{
+		BinTreeNode<ElemType>* cur = q.front();
+		(*visit)(cur->data);
+		q.pop();
+
+		if (cur->leftChild != NULL) q.push(cur->leftChild);
+		if (cur->rightChild != NULL) q.push(cur->rightChild);
+	}
+
+	return;
+
 }
 
 template<class ElemType>
