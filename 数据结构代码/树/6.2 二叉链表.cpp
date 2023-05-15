@@ -89,6 +89,13 @@ BinTreeNode<ElemType>* BinaryTree<ElemType>::CopyTreeHelp(const BinTreeNode<Elem
 template<class ElemType>
 void BinaryTree<ElemType>::DestroyHelp(BinTreeNode<ElemType>*& r)
 {
+	if (r != NULL)
+	{
+		DestroyHelp(r->leftChild);
+		DestroyHelp(r->rightChild);
+		delete r;
+		r = NULL;
+	}
 }
 
 template<class ElemType>
