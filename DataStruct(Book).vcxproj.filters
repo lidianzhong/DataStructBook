@@ -15,68 +15,68 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1.线性表的顺序存储.cpp">
+    <ClCompile Include="数据结构代码\1.线性表的顺序存储.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="2.1线性表的链式存储-单链表.cpp">
+    <ClCompile Include="数据结构代码\2.1线性表的链式存储-单链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="2.2线性表的链式存储-循环链表.cpp">
+    <ClCompile Include="数据结构代码\2.2线性表的链式存储-循环链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="2.3线性表的链式存储-双向链表.cpp">
+    <ClCompile Include="数据结构代码\2.3线性表的链式存储-双向链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="2.4链表修改版.cpp">
+    <ClCompile Include="数据结构代码\2.4链表修改版.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="其它文件\Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="3.1顺序栈.cpp">
+    <ClCompile Include="数据结构代码\3.1顺序栈.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="3.2链式栈.cpp">
+    <ClCompile Include="数据结构代码\3.2链式栈.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="3.3链队列.cpp">
+    <ClCompile Include="数据结构代码\3.3链队列.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="3.4循环队列.cpp">
+    <ClCompile Include="数据结构代码\3.4循环队列.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="4.1KMP字符串模式匹配算法.cpp">
+    <ClCompile Include="数据结构代码\4.1KMP字符串模式匹配算法.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="5.1普通矩阵.cpp">
+    <ClCompile Include="数据结构代码\5.1普通矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="5.2特殊矩阵-对称矩阵.cpp">
+    <ClCompile Include="数据结构代码\5.2特殊矩阵-对称矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="5.3特殊矩阵-三角矩阵.cpp">
+    <ClCompile Include="数据结构代码\5.3特殊矩阵-三角矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="5.4特殊矩阵-对角矩阵.cpp">
+    <ClCompile Include="数据结构代码\5.4特殊矩阵-对角矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="5.5 稀疏矩阵.cpp">
+    <ClCompile Include="数据结构代码\5.5 稀疏矩阵.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="6.1 顺序存储二叉树.cpp">
+    <ClCompile Include="数据结构代码\6.1 顺序存储二叉树.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="6.2 二叉链表.cpp">
+    <ClCompile Include="数据结构代码\6.2 二叉链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="矩阵转置算法(简单+快速).png">
+    <Image Include="其它文件\矩阵转置算法%28简单+快速%29.png">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="5.6 引用数法广义表.cpp">
+    <None Include="数据结构代码\5.6 引用数法广义表.cpp">
       <Filter>源文件</Filter>
     </None>
   </ItemGroup>
