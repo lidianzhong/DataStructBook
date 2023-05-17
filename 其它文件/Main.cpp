@@ -1,7 +1,8 @@
 #include <iostream>
-#include "5.5 稀疏矩阵.cpp"
-#include "5.6 引用数法广义表.cpp"
-#include "6.1 顺序存储二叉树.cpp"
+#include "数组和广义表/5.5 稀疏矩阵.cpp"
+#include "数组和广义表/5.6 引用数法广义表.cpp"
+#include "树/6.1 顺序存储二叉树.cpp"
+#include "树/6.2 二叉链表.cpp"
 
 using namespace std;
 
@@ -74,12 +75,28 @@ void test04()
 }
 
 
+void test05()
+{
+	BinTreeNode<char>* root;
+
+	char pre[] = "ABCDEFGHI";
+	char in[] = "DCBAGFHEI";
+
+	CreateBinaryTreeHelp<char>(root, pre, in, 0, int(strlen(pre) - 1), 0, int(strlen(in) - 1));
+
+	BinaryTree<char> tree(root);
+
+
+	tree.LevelOrder(Print);
+}
+
 int main()
 {
 	// test01();
 	// test02();
 	// test03();
-	test04();
+	// test04();
+	test05();
 
 	return 0;
 }

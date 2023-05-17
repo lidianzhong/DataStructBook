@@ -73,6 +73,8 @@ public:
 	BinaryTree(const BinaryTree<ElemType>& copy);                                                              // 复制构造函数模板
 	BinaryTree(BinTreeNode<ElemType>* r);                                                                      // 建立以r为根的二叉树
 	BinaryTree<ElemType>& operator=(const BinaryTree<ElemType>& copy);                                         // 重载赋值运算符
+
+
 };
 
 
@@ -431,4 +433,19 @@ BinaryTree<ElemType>& BinaryTree<ElemType>::operator=(const BinaryTree<ElemType>
 	root = CopyTreeHelp(copy.root);
 
 	return *this;
+}
+
+template<class ElemType>
+void CreateBinaryTreeHelp(BinTreeNode<ElemType>*& r, ElemType pre[], ElemType in[], int preLeft, int preRight, int inLeft, int inRight)
+{
+	if (preLeft > preRight || inRight > inRight) return;
+
+	r = new BinTreeNode<ElemType>(pre[preLeft]);
+
+	int numLeft = 0;
+	for (int pos = inLeft; in[pos] != r->data; pos++) numLeft++;
+
+	CreateBinaryTreeHelp(r->leftChild, pre, in, preLeft + 1, numLeft + preLeft, inLeft, numLeft + inLeft + 1);
+	CreateBinaryTreeHelp(r->rightChild, pre, in, preLeft + numLeft + 1, preRight, inLeft + numLeft + 1, inRight);
+
 }
