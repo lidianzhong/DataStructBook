@@ -85,6 +85,7 @@ public:
 
 };
 
+
 template<class ElemType>
 void InThreadBinTree<ElemType>::InThreadHelp(ThreadBinTreeNode<ElemType>* cur, ThreadBinTreeNode<ElemType>*& pre)
 {
@@ -119,5 +120,116 @@ void InThreadBinTree<ElemType>::InThreadHelp(ThreadBinTreeNode<ElemType>* cur, T
 		InThreadHelp(cur->rightChild, pre);
 
 }
+
+
+template<class ElemType>
+ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::CopyTreeHelp(BinTreeNode<ElemType>* r)
+{
+	if (r == NULL) return NULL;
+
+	ThreadBinTreeNode<ElemType>* cur = new ThreadBinTreeNode<ElemType>(r->data);
+	cur->leftChild = CopyTreeHelp(r->leftChild);
+	cur->rightChild = CopyTreeHelp(r->rightChild);
+
+	return cur;
+}
+
+template<class ElemType>
+ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::CopyTreeHelp(const ThreadBinTreeNode<ElemType>* copy)
+{
+	if (copy == NULL) return NULL;
+
+	ThreadBinTreeNode<ElemType>* cur = new ThreadBinTreeNode<ElemType>(copy->data);
+	cur->leftTag = copy->leftTag;
+	cur->rightTag = copy->rightTag;
+	cur->leftChild = CopyTreeHelp(copy->leftChild);
+	cur->rightChild = CopyTreeHelp(copy->rightChild);
+
+
+	return cur;
+}
+
+template<class ElemType>
+void InThreadBinTree<ElemType>::DestroyHelp(ThreadBinTreeNode<ElemType>*& r)
+{
+	if (r == NULL) return;
+	
+	DestroyHelp(r->leftChild);
+	DestroyHelp(r->rightChild);
+	delete r;
+	r = NULL;
+}
+
+template<class ElemType>
+InThreadBinTree<ElemType>::InThreadBinTree(const BinaryTree<ElemType>& bt)
+{
+	root = CopyTreeHelp(bt.GetRoot());
+}
+
+template<class ElemType>
+InThreadBinTree<ElemType>::~InThreadBinTree()
+{
+	DestroyHelp(root);
+}
+
+template<class ElemType>
+ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::GetRoot() const
+{
+	return root;
+}
+
+
+template<class ElemType>
+void InThreadBinTree<ElemType>::InThread()
+{
+	ThreadBinTreeNode<ElemType>* pre = NULL;
+	InThreadHelp(root, pre);
+	if (pre->rightChild == NULL) // pre为中序序列中最后一个结点
+		pre->rightTag = THREAD_PTR; // 如无右孩子，则加线索标记
+}
+
+
+template<class ElemType>
+void InThreadBinTree<ElemType>::InOrder(void(*visit)(const ElemType&)) const
+{
+	if (root == NULL) return;
+
+	ThreadBinTreeNode<ElemType>* cur = root;
+	while (cur->leftTag == CHILD_PTR) // 查找最左侧的结点，此结点为中序序列的第一个结点
+		cur = cur->leftChild;
+	while (cur != NULL)
+	{
+		(*visit)(cur->data);
+
+		if (cur->rightTag == THREAD_PTR) {
+			// 右链为线索，后继为cur->rightChild
+			cur = cur->rightChild;
+		}
+		else {
+			// 右链为孩子，cur右子树最左侧的结点为后继
+			cur = cur->rightChild;
+			while (cur->leftTag == CHILD_PTR)
+				cur = cur->leftChild; // 查找原cur右子树最左侧的结点
+		}
+	}
+}
+
+template<class ElemType>
+InThreadBinTree<ElemType>::InThreadBinTree(const InThreadBinTree<ElemType>& copy)
+{
+	root = CopyTreeHelp(copy.GetRoot());
+}
+
+template<class ElemType>
+InThreadBinTree<ElemType>& InThreadBinTree<ElemType>::operator=(const InThreadBinTree<ElemType>& copy)
+{
+	if (this == &copy) return *this;
+
+	root = CopyTreeHelp(copy.GetRoot());
+
+	return *this;
+}
+
+
 
 
