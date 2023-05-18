@@ -69,7 +69,7 @@
     <ClCompile Include="数据结构代码\树\6.2 二叉链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="6.3 线索二叉树-中序遍历.cpp">
+    <ClCompile Include="6.3.1 线索二叉树-中序遍历.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
