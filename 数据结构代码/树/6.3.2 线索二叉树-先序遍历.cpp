@@ -2,13 +2,13 @@
 #include "树/6.2 二叉链表.cpp"
 using namespace std;
 
-enum PointerTagType {CHILD_PTR, THREAD_PTR}; // 指针标志类型
+enum PointerTagType { CHILD_PTR, THREAD_PTR }; // 指针标志类型
 
 // 线索化二叉树结点类模板
 template<class ElemType>
 struct ThreadBinTreeNode
 {
-	ElemType data; 
+	ElemType data;
 	ThreadBinTreeNode<ElemType>* leftChild;
 	ThreadBinTreeNode<ElemType>* rightChild;
 	PointerTagType leftTag, rightTag; // 左右标志
@@ -25,7 +25,7 @@ struct ThreadBinTreeNode
 };
 
 template<class ElemType>
-ThreadBinTreeNode<ElemType>::ThreadBinTreeNode() : data(0), leftChild(NULL), rightChild(NULL), leftTag(CHILD_PTR), rightTag(THREAD_PTR) {}
+ThreadBinTreeNode<ElemType>::ThreadBinTreeNode() : data(0), leftChild(NULL), rightChild(NULL), leftTag(CHILD_PTR), rightTag(CHILD_PTR) {}
 
 
 template<class ElemType>
@@ -38,9 +38,9 @@ ThreadBinTreeNode<ElemType>::ThreadBinTreeNode(
 	: data(val), leftChild(lChild), rightChild(rChild) {};
 
 
-// 中序线索二叉树类模板
+// 先序线索二叉树类模板
 template<class ElemType>
-class InThreadBinTree
+class PreThreadBinTree
 {
 
 protected:
@@ -48,10 +48,10 @@ protected:
 
 	// 辅助函数模板
 
-	// 中序线索化以cur为根的二叉树
-	void InThreadHelp(ThreadBinTreeNode<ElemType>* cur, ThreadBinTreeNode<ElemType>*& pre);
+	// 先序线索化以cur为根的二叉树
+	void PreThreadHelp(ThreadBinTreeNode<ElemType>* cur, ThreadBinTreeNode<ElemType>*& pre);
 
-	// bt为根的二叉树转化成新的未线索化的中序线索二叉树，返回新二叉树的根
+	// bt为根的二叉树转化成新的未线索化的先序线索二叉树，返回新二叉树的根
 	ThreadBinTreeNode<ElemType>* CopyTreeHelp(BinTreeNode<ElemType>* r);
 
 	//复制线索二叉树
@@ -62,68 +62,74 @@ protected:
 
 public:
 
-	// 由二叉树构造中序线索二叉树——转换构造函数模板
-	InThreadBinTree(const BinaryTree<ElemType>& bt);
+	// 由二叉树构造先序线索二叉树——转换构造函数模板
+	PreThreadBinTree(const BinaryTree<ElemType>& bt);
 
 	// 析构函数模板
-	virtual~InThreadBinTree();
+	virtual~PreThreadBinTree();
 
 	// 返回线索二叉树的根
 	ThreadBinTreeNode<ElemType>* GetRoot() const;
 
-	// 中序线索化二叉树
-	void InThread();
+	// 先序线索化二叉树
+	void PreThread();
 
-	// 二叉树的中序遍历
-	void InOrder(void(*visit)(const ElemType&)) const;
+	// 二叉树的先序遍历
+	void PreOrder(void(*visit)(const ElemType&)) const;
 
 	// 复制构造函数模板
-	InThreadBinTree(const InThreadBinTree<ElemType>& copy);
+	PreThreadBinTree(const PreThreadBinTree<ElemType>& copy);
 
 	// 重载赋值运算符
-	InThreadBinTree<ElemType>& operator=(const InThreadBinTree<ElemType>& copy);
+	PreThreadBinTree<ElemType>& operator=(const PreThreadBinTree<ElemType>& copy);
 
 };
 
 
+
+
+
 template<class ElemType>
-void InThreadBinTree<ElemType>::InThreadHelp(ThreadBinTreeNode<ElemType>* cur, ThreadBinTreeNode<ElemType>*& pre)
+void PreThreadBinTree<ElemType>::PreThreadHelp(ThreadBinTreeNode<ElemType>* cur, ThreadBinTreeNode<ElemType>*& pre)
 {
-	// 遇到空结点返回
-	if (cur == NULL) return; 
+	// 遇到空结点就返回
+	if (cur == NULL) return;
 
-	if (cur->leftTag == CHILD_PTR)
-		// 线索化左子树
-		InThreadHelp(cur->leftChild, pre);
-
-
-	// 对当前cur结点的操作
-	if (cur->leftChild == NULL) {
-		// cur无左孩子，加线索
+	// 根
+	if (cur->leftChild == NULL)
+	{
 		cur->leftChild = pre;
 		cur->leftTag = THREAD_PTR;
 	}
 
-	// 对pre结点的操作
-	if (pre != NULL && pre->rightChild == NULL) {
-		// pre无右孩子，加线索
-		pre->rightChild = pre;
+	if (pre != NULL && pre->rightChild == NULL)
+	{
+		pre->rightChild = cur;
 		pre->rightTag = THREAD_PTR;
 	}
 
-
+	// pre 更新
 	pre = cur;
 
+	// 左
+	if (cur->leftTag == CHILD_PTR)
+	{
+		PreThreadHelp(cur->leftChild, pre);
+	}
+	
 
-	if (cur->rightTag == NULL)
-		// 线索化右子树
-		InThreadHelp(cur->rightChild, pre);
+	// 右
+	if (cur->rightTag == CHILD_PTR)
+	{
+		PreThreadHelp(cur->rightChild, pre);
+	}
+
+
 
 }
 
-
 template<class ElemType>
-ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::CopyTreeHelp(BinTreeNode<ElemType>* r)
+ThreadBinTreeNode<ElemType>* PreThreadBinTree<ElemType>::CopyTreeHelp(BinTreeNode<ElemType>* r)
 {
 	if (r == NULL) return NULL;
 
@@ -135,7 +141,7 @@ ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::CopyTreeHelp(BinTreeNode
 }
 
 template<class ElemType>
-ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::CopyTreeHelp(const ThreadBinTreeNode<ElemType>* copy)
+ThreadBinTreeNode<ElemType>* PreThreadBinTree<ElemType>::CopyTreeHelp(const ThreadBinTreeNode<ElemType>* copy)
 {
 	if (copy == NULL) return NULL;
 
@@ -150,10 +156,10 @@ ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::CopyTreeHelp(const Threa
 }
 
 template<class ElemType>
-void InThreadBinTree<ElemType>::DestroyHelp(ThreadBinTreeNode<ElemType>*& r)
+void PreThreadBinTree<ElemType>::DestroyHelp(ThreadBinTreeNode<ElemType>*& r)
 {
 	if (r == NULL) return;
-	
+
 	DestroyHelp(r->leftChild);
 	DestroyHelp(r->rightChild);
 	delete r;
@@ -161,67 +167,75 @@ void InThreadBinTree<ElemType>::DestroyHelp(ThreadBinTreeNode<ElemType>*& r)
 }
 
 template<class ElemType>
-InThreadBinTree<ElemType>::InThreadBinTree(const BinaryTree<ElemType>& bt)
+PreThreadBinTree<ElemType>::PreThreadBinTree(const BinaryTree<ElemType>& bt)
 {
 	root = CopyTreeHelp(bt.GetRoot());
 }
 
 template<class ElemType>
-InThreadBinTree<ElemType>::~InThreadBinTree()
+PreThreadBinTree<ElemType>::~PreThreadBinTree()
 {
 	DestroyHelp(root);
 }
 
 template<class ElemType>
-ThreadBinTreeNode<ElemType>* InThreadBinTree<ElemType>::GetRoot() const
+ThreadBinTreeNode<ElemType>* PreThreadBinTree<ElemType>::GetRoot() const
 {
 	return root;
 }
 
-
 template<class ElemType>
-void InThreadBinTree<ElemType>::InThread()
+void PreThreadBinTree<ElemType>::PreThread()
 {
 	ThreadBinTreeNode<ElemType>* pre = NULL;
-	InThreadHelp(root, pre);
-	if (pre->rightChild == NULL) // pre为中序序列中最后一个结点
-		pre->rightTag = THREAD_PTR; // 如无右孩子，则加线索标记
+	PreThreadHelp(root, pre);
+	if (pre->rightChild == NULL)
+		pre->rightTag = THREAD_PTR;
 }
 
-
 template<class ElemType>
-void InThreadBinTree<ElemType>::InOrder(void(*visit)(const ElemType&)) const
+void PreThreadBinTree<ElemType>::PreOrder(void(*visit)(const ElemType&)) const
 {
 	if (root == NULL) return;
 
-	ThreadBinTreeNode<ElemType>* cur = root;
-	while (cur->leftTag == CHILD_PTR) // 查找最左侧的结点，此结点为中序序列的第一个结点
-		cur = cur->leftChild;
+	ThreadBinTreeNode<ElemType>* cur = root; // 根结点为先序遍历的第一个结点
+
 	while (cur != NULL)
 	{
 		(*visit)(cur->data);
 
 		if (cur->rightTag == THREAD_PTR) {
-			// 右链为线索，后继为cur->rightChild
+			// 如果右链为线索，后继为cur->rightChild
 			cur = cur->rightChild;
 		}
 		else {
-			// 右链为孩子，cur右子树最左侧的结点为后继
-			cur = cur->rightChild;
-			while (cur->leftTag == CHILD_PTR)
-				cur = cur->leftChild; // 查找原cur右子树最左侧的结点
+			// 右链为孩子
+			if (cur->leftTag == CHILD_PTR) {
+				// cur有左孩子，则左孩子为后继
+				cur = cur->leftChild;
+			}
+			else {
+				// cur无左孩子，则右孩子为后继
+				cur = cur->rightChild;
+			}
 		}
+
+
 	}
 }
 
+
+
+
+
 template<class ElemType>
-InThreadBinTree<ElemType>::InThreadBinTree(const InThreadBinTree<ElemType>& copy)
+PreThreadBinTree<ElemType>::PreThreadBinTree(const PreThreadBinTree<ElemType>& copy)
 {
 	root = CopyTreeHelp(copy.GetRoot());
 }
 
 template<class ElemType>
-InThreadBinTree<ElemType>& InThreadBinTree<ElemType>::operator=(const InThreadBinTree<ElemType>& copy)
+PreThreadBinTree<ElemType>& PreThreadBinTree<ElemType>::operator=(const PreThreadBinTree<ElemType>& copy)
 {
 	if (this == &copy) return *this;
 
