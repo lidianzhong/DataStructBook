@@ -81,6 +81,9 @@
     <ClCompile Include="数据结构代码\树\6.4.1 树的双亲表示法.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="数据结构代码\树\6.4.2 树的孩子双亲表示法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="其它文件\矩阵转置算法%28简单+快速%29.png">

@@ -79,6 +79,8 @@ public:
 	bool SetElem(int position, const ElemType &e);	
 	bool Delete(int position, ElemType &e);	
 	bool Insert(int position, const ElemType& e); 
+	bool InsertTail(const ElemType& e);
+	Node<ElemType>* GetHead() const;
 	LinkList(const LinkList<ElemType>& copy);                      // 复制构造函数
 	LinkList<ElemType>& operator=(const LinkList<ElemType>& copy); // 重载赋值运算符
 };
@@ -121,9 +123,6 @@ LinkList<ElemType>::~LinkList()
 template<class ElemType>
 int LinkList<ElemType>::Length() const
 {
-	int count = 0;
-	for (Node<ElemType>* tmpPtr = head->next; tmpPtr != NULL; tmpPtr = tmpPtr->next) count++;
-
 	return count;
 }
 
@@ -140,6 +139,12 @@ void LinkList<ElemType>::Clear()
 	while (!Empty()) {
 		Delete(1, tmpElem);
 	}
+}
+
+template<class ElemType>
+Node<ElemType>* LinkList<ElemType>::GetHead() const
+{
+	return head;
 }
 
 template<class ElemType>
@@ -227,6 +232,16 @@ bool LinkList<ElemType>::Insert(int position, const ElemType& e)
 }
 
 template<class ElemType>
+bool LinkList<ElemType>::InsertTail(const ElemType& e)
+{
+	Node<ElemType>* tmpPtr = GetElemPtr(Length());
+	tmpPtr->next = new Node<ElemType>(e);
+	count++;
+
+	return true;
+}
+
+template<class ElemType>
 LinkList<ElemType>::LinkList(const LinkList<ElemType>& copy)
 {
 	curPosition = 0;
@@ -259,7 +274,7 @@ LinkList<ElemType>& LinkList<ElemType>::operator=(const LinkList<ElemType>& copy
 	}
 
 	// 复制要复制的链表
-	Node<ElemType>* tmpPtr = head;
+	tmpPtr = head;
 
 	for (Node<ElemType>* curPtr = copy.GetElemPtr(1); curPtr != NULL; curPtr = curPtr->next) {
 		tmpPtr->next = new Node<ElemType>(curPtr->data);

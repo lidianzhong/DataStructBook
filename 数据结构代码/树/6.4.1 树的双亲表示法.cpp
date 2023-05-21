@@ -140,7 +140,7 @@ ParentTree<ElemType>::~ParentTree()
 template<class ElemType>
 int ParentTree<ElemType>::GetRoot() const
 {
-	return 0;
+	return root;
 }
 
 template<class ElemType>
@@ -192,6 +192,7 @@ void ParentTree<ElemType>::LevelOrder(void(*visit)(const ElemType&)) const
 	while (q.empty()) {
 		int r = q.front();
 		(*visit)(nodes[r].data);
+		q.pop();
 
 		for (int i = 0; i < num; i++)
 			if (nodes[i].parent == r)
@@ -274,6 +275,8 @@ bool ParentTree<ElemType>::InsertChild(int cur, int i, const ElemType& e)
 	for (int i = num; i > cur + i - 1; i--)
 		nodes[i] = nodes[i - 1];
 	nodes[cur + i - 1] = ParentTreeNode<ElemType>(e, cur);
+
+	num++;
 
 	return true;
 }

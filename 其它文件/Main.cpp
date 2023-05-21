@@ -3,6 +3,7 @@
 #include "数组和广义表/5.6 引用数法广义表.cpp"
 #include "树/6.1 顺序存储二叉树.cpp"
 #include "树/6.2 二叉链表.cpp"
+#include "树/6.4.2 树的孩子双亲表示法.cpp"
 
 using namespace std;
 
@@ -90,13 +91,63 @@ void test05()
 	tree.LevelOrder(Print);
 }
 
+void test06()
+{
+	ChildParentTree<char> tree('A');
+	tree.InsertChild(0, 1, 'B');
+	tree.InsertChild(0, 2, 'C');
+	tree.InsertChild(0, 3, 'D');
+	tree.InsertChild(1, 1, 'E');
+	tree.InsertChild(1, 2, 'F');
+	tree.InsertChild(3, 1, 'G');
+	tree.InsertChild(3, 2, 'H');
+
+	cout << "树的先序遍历结果为：" << endl;
+	tree.PreRootOrder(Print);
+	cout << endl;
+
+	cout << "树的后序遍历结果为：" << endl;
+	tree.PostRootOrder(Print);
+	cout << endl;
+
+	cout << "树的层序遍历结果为：" << endl;
+	tree.LevelOrder(Print);
+	cout << endl;
+
+	cout << "结点1的第一个孩子：" << tree.FirstChild(1) << endl;
+	
+	cout << "树的结点数量为：" << tree.NodeCount() << endl;
+
+	cout << "树的高度为：" << tree.Height() << endl;
+
+	cout << "树的度为：" << tree.Degree() << endl;
+
+	cout << "------删除一个1结点--------" << tree.DeleteChild(0, 1);
+
+	cout << "树的先序遍历结果为：" << endl;
+	tree.PreRootOrder(Print);
+	cout << endl;
+
+	cout << "树的后序遍历结果为：" << endl;
+	tree.PostRootOrder(Print);
+	cout << endl;
+
+	cout << "树的层序遍历结果为：" << endl;
+	tree.LevelOrder(Print);
+	cout << endl;
+
+	cout << "结点1的第一个孩子：" << tree.FirstChild(1) << endl;
+}
+
 int main()
 {
 	// test01();
 	// test02();
 	// test03();
 	// test04();
-	test05();
+	// test05();
+
+	test06();
 
 	return 0;
 }

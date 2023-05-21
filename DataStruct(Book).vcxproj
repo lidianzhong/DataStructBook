@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="数据结构代码\树\6.4.2 树的孩子双亲表示法.cpp" />
     <ClCompile Include="数据结构代码\树\6.4.1 树的双亲表示法.cpp" />
     <ClCompile Include="数据结构代码\树\6.3.1 线索二叉树-中序遍历.cpp" />
     <ClCompile Include="数据结构代码\树\6.3.2 线索二叉树-先序遍历.cpp" />
