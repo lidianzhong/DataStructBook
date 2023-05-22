@@ -133,6 +133,7 @@
     <ClCompile Include="数据结构代码\树\6.3.1 线索二叉树-中序遍历.cpp" />
     <ClCompile Include="数据结构代码\树\6.3.2 线索二叉树-先序遍历.cpp" />
     <ClCompile Include="数据结构代码\树\6.3.3 线索二叉树-后序遍历.cpp" />
+    <ClCompile Include="数据结构代码\树\6.4.3 树的孩子兄弟表示法.cpp" />
     <ClCompile Include="数据结构代码\线性表\1.线性表的顺序存储.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -153,9 +154,6 @@
     <ClCompile Include="数据结构代码\树\6.1 顺序存储二叉树.cpp" />
     <ClCompile Include="数据结构代码\树\6.2 二叉链表.cpp" />
     <ClCompile Include="其它文件\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="其它文件\矩阵转置算法%28简单+快速%29.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="数据结构代码\数组和广义表\5.6 引用数法广义表.cpp" />
