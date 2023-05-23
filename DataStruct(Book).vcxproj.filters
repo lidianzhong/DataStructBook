@@ -87,6 +87,9 @@
     <ClCompile Include="数据结构代码\树\6.4.3 树的孩子兄弟表示法.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="数据结构代码\树\6.5 哈夫曼树.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="数据结构代码\数组和广义表\5.6 引用数法广义表.cpp">

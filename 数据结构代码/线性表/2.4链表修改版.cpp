@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 using namespace std;
 
@@ -244,6 +245,8 @@ bool LinkList<ElemType>::InsertTail(const ElemType& e)
 template<class ElemType>
 LinkList<ElemType>::LinkList(const LinkList<ElemType>& copy)
 {
+	head = new Node<ElemType>;
+
 	curPosition = 0;
 	curPtr = head;
 	count = copy.count;

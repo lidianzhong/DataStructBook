@@ -134,6 +134,7 @@
     <ClCompile Include="数据结构代码\树\6.3.2 线索二叉树-先序遍历.cpp" />
     <ClCompile Include="数据结构代码\树\6.3.3 线索二叉树-后序遍历.cpp" />
     <ClCompile Include="数据结构代码\树\6.4.3 树的孩子兄弟表示法.cpp" />
+    <ClCompile Include="数据结构代码\树\6.5 哈夫曼树.cpp" />
     <ClCompile Include="数据结构代码\线性表\1.线性表的顺序存储.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

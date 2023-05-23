@@ -5,6 +5,7 @@
 #include "树/6.2 二叉链表.cpp"
 #include "树/6.4.2 树的孩子双亲表示法.cpp"
 #include "树/6.4.3 树的孩子兄弟表示法.cpp"
+#include "树/6.5 哈夫曼树.cpp"
 
 using namespace std;
 
@@ -190,6 +191,30 @@ void test07()
 	cout << endl;
 }
 
+void test08()
+{
+	char ch[10] = "ABCD";
+	int w[10] = { 7,5,4,2 };
+	int n = 4;
+	HuffmanTree<char, int> hftree(ch,w,n);
+
+	LinkList<char> mylist = hftree.EnCode('C');
+	mylist.Traverse(Print);
+	cout << endl;
+
+	mylist = hftree.EnCode('D');
+	mylist.Traverse(Print);
+	cout << endl;
+
+	LinkList<char> strCode;
+	strCode.InsertTail('1');
+	strCode.InsertTail('1');
+	strCode.InsertTail('0');
+	mylist = hftree.DeCode(strCode);
+	mylist.Traverse(Print);
+	cout << endl;
+}
+
 int main()
 {
 	// test01();
@@ -198,8 +223,9 @@ int main()
 	// test04();
 	// test05();
 	//test06();
+	//test07();
 
-	test07();
+	test08();
 
 	return 0;
 }
