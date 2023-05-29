@@ -294,6 +294,8 @@ bool ChildParentTree<ElemType>::InsertChild(int cur, int i, const ElemType& e)
 
 	num++;
 
+	return true;
+
 }
 
 template<class ElemType>
@@ -308,6 +310,8 @@ bool ChildParentTree<ElemType>::DeleteChild(int cur, int i)
 	nodes[tmpPtr->next->data].childLKlist.Clear();
 
 	tmpPtr->next = tmpPtr->next->next;
+
+	return true;
 }
 
 template<class ElemType>
